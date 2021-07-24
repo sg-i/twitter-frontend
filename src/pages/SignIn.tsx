@@ -1,6 +1,8 @@
 import React from 'react';
 import TwitterIcon from '@material-ui/icons/Twitter';
-import { Button, makeStyles, Typography } from '@material-ui/core';
+import { Button, Dialog, makeStyles, TextField, Typography } from '@material-ui/core';
+import { OpenInBrowser } from '@material-ui/icons';
+import { ModalBlock } from '../components/Dialog';
 
 const useStylesSignIn = makeStyles((theme) => ({
   wrapper: {
@@ -53,6 +55,16 @@ const useStylesSignIn = makeStyles((theme) => ({
   },
 }));
 function SignIn() {
+  const [visibleModal, setVisibleModal] = React.useState<'signIn' | 'signUp'>();
+  const handelClickOpenSignIn = (): void => {
+    setVisibleModal('signIn');
+  };
+  const handelClickOpenSignUp = (): void => {
+    setVisibleModal('signUp');
+  };
+  const handleCloseModal = (): void => {
+    setVisibleModal(undefined);
+  };
   const classes = useStylesSignIn();
   return (
     <div>
@@ -70,6 +82,7 @@ function SignIn() {
               Присоединяйтесь к Твиттеру прямо сейчас!
             </Typography>
             <Button
+              onClick={handelClickOpenSignUp}
               className={classes.loginSideButton}
               variant="contained"
               fullWidth
@@ -77,12 +90,24 @@ function SignIn() {
               Зарегистрироваться
             </Button>
             <Button
+              onClick={handelClickOpenSignIn}
               className={classes.loginSideButton}
               variant="outlined"
               fullWidth
               color="primary">
               Войти
             </Button>
+
+            {visibleModal === 'signIn' && (
+              <ModalBlock onClose={handleCloseModal} title="Войдите в учетную запись">
+                <TextField>ВХод</TextField>
+              </ModalBlock>
+            )}
+            {visibleModal === 'signUp' && (
+              <ModalBlock onClose={handleCloseModal} title="Создайте учетную запись">
+                <TextField>Регистрация</TextField>
+              </ModalBlock>
+            )}
           </div>
         </section>
       </div>
