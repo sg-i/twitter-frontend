@@ -16,11 +16,12 @@ export const theme = createTheme({
         },
         primary: {
             main: "rgb(29,161,242)",
+            
             contrastText: '#fff',
         },
         secondary: {
-            main: '#fff',
-        },
+            main: '#000000',
+         },
         background: {
             default: "fff",
         },
@@ -33,9 +34,19 @@ export const theme = createTheme({
                 textTransform: 'none',
                 fontSize: 15,
                 fontWeight: 700,
-                height: 40
-            }
-        }
-    }
+                height: 40,
+                
+            },
+        },
+       MuiDialog:{
+           paper:{
+               minWidth: '600px',
+           },
+       }
+        
+      
+      
+       
+    },
     
 })
