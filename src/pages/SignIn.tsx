@@ -15,7 +15,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { OpenInBrowser } from '@material-ui/icons';
-import { ModalBlock } from '../components/Dialog';
+import { ModalBlock } from '../components/ModalBlock';
 
 export const useStylesSignIn = makeStyles((theme) => ({
   wrapper: {

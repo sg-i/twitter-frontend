@@ -1,30 +1,52 @@
-// @ts-nocheck
+
 import  {createTheme}  from "@material-ui/core/styles";
 import green from '@material-ui/core/colors/green';
+
 export const theme = createTheme({
-    palette:{
-        typography: {
-            fontFamily: [
-                '-apple-system', 
-                'BlinkMacSystemFont', 
-                "Segoe UI", 
-                'Roboto', 
-                'Helvetica', 
-                'Arial', 
-                'sans-serif'
-            ]
-        },
-        primary: {
-            main: "rgb(29,161,242)",
+   
+    typography: {
+        fontFamily: "Segoe UI",
+            // '-apple-system', 
+            // 'BlinkMacSystemFont', 
             
+            // 'Roboto', 
+            // 'Helvetica', 
+            // 'Arial', 
+            // 'sans-serif'
+        
+        
+    },
+    palette:{
+        
+        primary: {
+            light: "#536471",
+            main: "rgb(29,161,242)",
+            dark: "#536471",
             contrastText: '#fff',
+            
+            
         },
         secondary: {
+            light: "#536471",
             main: '#000000',
+            dark: "#536471",
+            contrastText: '#fff',
          },
         background: {
             default: "fff",
         },
+        text: {
+            primary: '#0F1419',
+            secondary: '##536471',
+           
+        },
+        action:{
+            active: "#536471",
+            hover: '#rgb(29,161,242)',
+            focus: '#912020',
+            
+        },
+        
         
     },
     overrides: {

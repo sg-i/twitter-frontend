@@ -1,5 +1,7 @@
 import React from 'react';
+
 import {
+  Avatar,
   createStyles,
   Grid,
   IconButton,
@@ -7,46 +9,88 @@ import {
   List,
   ListItem,
   makeStyles,
+  Paper,
   Typography,
   withStyles,
 } from '@material-ui/core';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import HomeIcon from '@material-ui/icons/HomeOutlined';
-import SearchIcon from '@material-ui/icons/SearchOutlined';
-import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
-import MailIcon from '@material-ui/icons/MailOutlineOutlined';
-import BookmarkIcon from '@material-ui/icons/BookmarkBorderOutlined';
-import FeaturedIcon from '@material-ui/icons/FeaturedPlayListOutlined';
-import PersonIcon from '@material-ui/icons/PersonOutlineOutlined';
-import MoreIcon from '@material-ui/icons/MoreHorizOutlined';
-import { theme } from '../theme';
 
-const useHomeStyles = makeStyles(() => ({
+import { theme } from '../theme';
+import { grey } from '@material-ui/core/colors';
+import { Tweet } from '../components/Tweet';
+import { SideBar } from '../components/SideBar';
+
+export const useHomeStyles = makeStyles((theme) => ({
   sideMenu: {
+    flexDirection: 'column',
     margin: '0',
     padding: 0,
     listStyleType: 'none',
+    '& div': {
+      display: 'inline-flex',
+      alignItems: 'center',
+      paddingRight: '45px',
+      paddingLeft: 15,
+      borderRadius: '30px',
+      '&:hover': {
+        color: theme.palette.primary.main,
+        backgroundColor: 'rgba(29,161,242,0.1)',
+        '& svg path': {
+          fill: theme.palette.primary.main,
+        },
+      },
+    },
   },
   sideMenuListItem: {
+    height: 50,
     cursor: 'pointer',
     display: 'flex',
     alignItems: 'center',
-    marginBottom: 3,
-    '&:hover': {
-      color: theme.palette.primary.main,
-    },
+    margin: '3px 0',
   },
 
   sideMenuListItemLabel: {
     fontWeight: 700,
     fontSize: 20,
-    marginLeft: '5px',
+    marginLeft: '3px',
   },
   sideMenuListItemIcon: {
     fontSize: 32,
+    marginRight: 15,
+  },
+  tweetsWrapper: {
+    height: '100%',
+    width: '100%',
+    padding: 0,
+    borderTop: 0,
+    borderBottom: 0,
+  },
+  tweetsHeader: {
+    padding: '10px 5px',
+    borderLeft: 0,
+    borderRight: 0,
+    borderTop: 0,
+  },
+  tweetsUserName: {
+    color: '#536471',
+    fontSize: 15,
+    fontWeight: 400,
+  },
+  tweet: {
+    cursor: 'pointer',
     '&:hover': {
-      color: theme.palette.primary.main,
+      backgroundColor: 'rgb(245,248,250)',
     },
+  },
+  tweetUserAvatar: {
+    margin: '0 auto',
+    height: 48,
+    width: 48,
+  },
+  tweetMenu: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: 440,
+    marginLeft: '-12px',
   },
 }));
 
@@ -57,6 +101,7 @@ const SearchTextField = withStyles(() =>
       backgroundColor: '#E6ECF0',
       height: 45,
       padding: 0,
+      margin: 0,
       paddingLeft: 20,
     },
   }),
@@ -64,92 +109,48 @@ const SearchTextField = withStyles(() =>
 export function Home() {
   const classes = useHomeStyles();
   return (
-    <section style={{ margin: '0 auto' }}>
-      <Grid container justifyContent="center" alignItems="stretch" direction="row">
-        <Grid item xs={2}>
-          <ul className={classes.sideMenu}>
-            <li className={classes.sideMenuListItem}>
-              <IconButton color="primary">
-                <TwitterIcon className={classes.sideMenuListItemIcon}></TwitterIcon>
-              </IconButton>
-            </li>
-            <li className={classes.sideMenuListItem}>
-              <IconButton color="primary">
-                <HomeIcon className={classes.sideMenuListItemIcon} color="secondary"></HomeIcon>
-              </IconButton>
-              <Typography className={classes.sideMenuListItemLabel} variant="h6">
+    <section>
+      <Grid container justifyContent="center" direction="row" style={{ flexWrap: 'nowrap' }}>
+        <Grid style={{ width: 270, height: '100%' }} item>
+          <SideBar classes={classes}></SideBar>
+        </Grid>
+        <Grid style={{ width: 600, height: '100%' }} item>
+          <Paper className={classes.tweetsWrapper} variant="outlined" square>
+            <Paper className={classes.tweetsHeader} variant="outlined" square>
+              <Typography style={{ fontFamily: 'Segoe UI', fontWeight: 900 }} variant="h6">
                 Главная
               </Typography>
-            </li>
-            <li className={classes.sideMenuListItem}>
-              <IconButton color="primary">
-                <SearchIcon className={classes.sideMenuListItemIcon} color="secondary"></SearchIcon>
-              </IconButton>
-              <Typography className={classes.sideMenuListItemLabel} variant="h6">
-                Обзор
-              </Typography>
-            </li>
-            <li className={classes.sideMenuListItem}>
-              <IconButton color="primary">
-                <NotificationsIcon
-                  className={classes.sideMenuListItemIcon}
-                  color="secondary"></NotificationsIcon>
-              </IconButton>
-              <Typography className={classes.sideMenuListItemLabel} variant="h6">
-                Уведомления
-              </Typography>
-            </li>
-            <li className={classes.sideMenuListItem}>
-              <IconButton color="primary">
-                <MailIcon className={classes.sideMenuListItemIcon} color="secondary"></MailIcon>
-              </IconButton>
-              <Typography className={classes.sideMenuListItemLabel} variant="h6">
-                Сообщения
-              </Typography>
-            </li>
-            <li className={classes.sideMenuListItem}>
-              <IconButton color="primary">
-                <BookmarkIcon
-                  className={classes.sideMenuListItemIcon}
-                  color="secondary"></BookmarkIcon>
-              </IconButton>
-              <Typography className={classes.sideMenuListItemLabel} variant="h6">
-                Закладки
-              </Typography>
-            </li>
-            <li className={classes.sideMenuListItem}>
-              <IconButton color="primary">
-                <FeaturedIcon
-                  className={classes.sideMenuListItemIcon}
-                  color="secondary"></FeaturedIcon>
-              </IconButton>
-              <Typography className={classes.sideMenuListItemLabel} variant="h6">
-                Списки
-              </Typography>
-            </li>
-            <li className={classes.sideMenuListItem}>
-              <IconButton color="primary">
-                <PersonIcon className={classes.sideMenuListItemIcon} color="secondary"></PersonIcon>
-              </IconButton>
-              <Typography className={classes.sideMenuListItemLabel} variant="h6">
-                Профиль
-              </Typography>
-            </li>
-            <li className={classes.sideMenuListItem}>
-              <IconButton color="primary">
-                <MoreIcon className={classes.sideMenuListItemIcon} color="secondary"></MoreIcon>
-              </IconButton>
-              <Typography className={classes.sideMenuListItemLabel} variant="h6">
-                Еще
-              </Typography>
-            </li>
-            <li className={classes.sideMenuListItem}></li>
-          </ul>
+            </Paper>
+            <Tweet
+              user={{
+                fullname: 'annylaifu',
+                username: 'anny',
+                avatarUrl:
+                  'https://pbs.twimg.com/profile_images/1226619642543624192/4BwE4CaZ_400x400.jpg',
+              }}
+              text="this was supposed to be a pretty picture with pink sunset.. i am pretty disappointed with iphone's camera, or maybe there's something you can do with settings? idk T__T"
+              classes={classes}></Tweet>
+            <Tweet
+              user={{
+                fullname: 'annylaifu',
+                username: 'anny',
+                avatarUrl:
+                  'https://pbs.twimg.com/profile_images/1226619642543624192/4BwE4CaZ_400x400.jpg',
+              }}
+              text="this was supposed to be a pretty picture with pink sunset.. i am pretty disappointed with iphone's camera, or maybe there's something you can do with settings? idk T__T"
+              classes={classes}></Tweet>
+            <Tweet
+              user={{
+                fullname: 'annylaifu',
+                username: 'anny',
+                avatarUrl:
+                  'https://pbs.twimg.com/profile_images/1226619642543624192/4BwE4CaZ_400x400.jpg',
+              }}
+              text="this was supposed to be a pretty picture with pink sunset.. i am pretty disappointed with iphone's camera, or maybe there's something you can do with settings? idk T__T"
+              classes={classes}></Tweet>
+          </Paper>
         </Grid>
-        <Grid item xs={4}>
-          middle block
-        </Grid>
-        <Grid item xs={2}>
+        <Grid style={{ width: 390, height: '100%', padding: '0px 30px' }} item>
           <SearchTextField placeholder="Поиск в Твиттере" fullWidth></SearchTextField>
         </Grid>
       </Grid>
