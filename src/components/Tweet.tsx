@@ -34,7 +34,7 @@ export const Tweet: React.FC<TweetProps> = ({
 }: TweetProps): React.ReactElement => {
   return (
     <Paper className={cN(classes.tweet, classes.tweetsHeader)} variant="outlined" square>
-      <Grid container>
+      <Grid style={{ flexWrap: 'nowrap' }} container>
         <Grid style={{ minWidth: '70px' }} item xs={1}>
           <Avatar
             className={classes.tweetUserAvatar}

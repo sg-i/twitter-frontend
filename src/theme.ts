@@ -57,7 +57,10 @@ export const theme = createTheme({
                 fontSize: 15,
                 fontWeight: 700,
                 height: 40,
-                
+                '&:hover': {
+                    backgroundColor: 'rgb(26, 145, 218)',
+                    boxShadow: 'none',
+                  },
             },
         },
        MuiDialog:{

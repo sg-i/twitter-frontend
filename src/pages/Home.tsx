@@ -1,5 +1,5 @@
 import React from 'react';
-
+import cN from 'classnames';
 import {
   Avatar,
   createStyles,
@@ -20,6 +20,7 @@ import { theme } from '../theme';
 import { grey } from '@material-ui/core/colors';
 import { Tweet } from '../components/Tweet';
 import { SideBar } from '../components/SideBar';
+import { AddTweetForm } from '../components/AddTweetForm';
 
 export const useHomeStyles = makeStyles((theme) => ({
   sideMenu: {
@@ -119,6 +120,44 @@ export const useHomeStyles = makeStyles((theme) => ({
       boxShadow: 'none',
     },
   },
+  addTweetPaper: {
+    minHeight: 125,
+    paddingRight: 15,
+  },
+  addTweetTextArea: {
+    width: '100%',
+    paddingTop: 10,
+    fontFamily: 'inherit',
+    fontSize: 20,
+    outline: 'none',
+    border: 'none',
+    resize: 'none',
+    paddingBottom: 30,
+    borderBottom: '1px solid rgba(0,0,0,0.1)',
+  },
+  AddTweetFormOption: {
+    display: 'flex',
+    alignItems: 'center',
+    width: '100%',
+    marginBottom: '-5px',
+    paddingTop: 10,
+  },
+  AddTweetFormMenu: {
+    marginBottom: -5,
+    display: 'flex',
+    width: '100%',
+  },
+  AddTweetFormButton: {
+    minWidth: 120,
+    height: 40,
+    marginLeft: 7,
+    marginRight: 10,
+    boxShadow: 'none',
+    '&:hover': {
+      backgroundColor: 'rgb(26, 145, 218)',
+      boxShadow: 'none',
+    },
+  },
 }));
 
 const SearchTextField = withStyles(() =>
@@ -135,21 +174,76 @@ const SearchTextField = withStyles(() =>
 )(InputBase);
 export function Home() {
   const classes = useHomeStyles();
-  const matches = useMediaQuery('(min-width:600px)');
-  console.log(matches);
+
   return (
     <section>
       <Grid container justifyContent="center" direction="row" style={{ flexWrap: 'nowrap' }}>
-        <Grid style={{ paddingLeft: 20, maxWidth: 270, height: '100%' }} item>
+        <Grid
+          style={{ position: 'sticky', top: '0', paddingLeft: 20, maxWidth: 270, height: '100%' }}
+          item>
           <SideBar classes={classes}></SideBar>
         </Grid>
         <Grid style={{ width: 600, height: '100%' }} item>
           <Paper className={classes.tweetsWrapper} variant="outlined" square>
-            <Paper className={classes.tweetsHeader} variant="outlined" square>
+            <Paper
+              className={classes.tweetsHeader}
+              style={{ position: 'sticky', top: '0', zIndex: 1 }}
+              variant="outlined"
+              square>
               <Typography style={{ fontFamily: 'Segoe UI', fontWeight: 900 }} variant="h6">
                 Главная
               </Typography>
             </Paper>
+
+            <AddTweetForm classes={classes}></AddTweetForm>
+
+            <div style={{ backgroundColor: '#f7f9f9', minHeight: 13 }}></div>
+
+            <Tweet
+              user={{
+                fullname: 'annylaifu',
+                username: 'anny',
+                avatarUrl:
+                  'https://pbs.twimg.com/profile_images/1226619642543624192/4BwE4CaZ_400x400.jpg',
+              }}
+              text="this was supposed to be a pretty picture with pink sunset.. i am pretty disappointed with iphone's camera, or maybe there's something you can do with settings? idk T__T"
+              classes={classes}></Tweet>
+            <Tweet
+              user={{
+                fullname: 'annylaifu',
+                username: 'anny',
+                avatarUrl:
+                  'https://pbs.twimg.com/profile_images/1226619642543624192/4BwE4CaZ_400x400.jpg',
+              }}
+              text="this was supposed to be a pretty picture with pink sunset.. i am pretty disappointed with iphone's camera, or maybe there's something you can do with settings? idk T__T"
+              classes={classes}></Tweet>
+            <Tweet
+              user={{
+                fullname: 'annylaifu',
+                username: 'anny',
+                avatarUrl:
+                  'https://pbs.twimg.com/profile_images/1226619642543624192/4BwE4CaZ_400x400.jpg',
+              }}
+              text="this was supposed to be a pretty picture with pink sunset.. i am pretty disappointed with iphone's camera, or maybe there's something you can do with settings? idk T__T"
+              classes={classes}></Tweet>
+            <Tweet
+              user={{
+                fullname: 'annylaifu',
+                username: 'anny',
+                avatarUrl:
+                  'https://pbs.twimg.com/profile_images/1226619642543624192/4BwE4CaZ_400x400.jpg',
+              }}
+              text="this was supposed to be a pretty picture with pink sunset.. i am pretty disappointed with iphone's camera, or maybe there's something you can do with settings? idk T__T"
+              classes={classes}></Tweet>
+            <Tweet
+              user={{
+                fullname: 'annylaifu',
+                username: 'anny',
+                avatarUrl:
+                  'https://pbs.twimg.com/profile_images/1226619642543624192/4BwE4CaZ_400x400.jpg',
+              }}
+              text="this was supposed to be a pretty picture with pink sunset.. i am pretty disappointed with iphone's camera, or maybe there's something you can do with settings? idk T__T"
+              classes={classes}></Tweet>
             <Tweet
               user={{
                 fullname: 'annylaifu',
@@ -180,8 +274,19 @@ export function Home() {
           </Paper>
         </Grid>
         <Hidden smDown>
-          <Grid style={{ width: 390, height: '100%', padding: '0px 30px' }} item>
+          <Grid
+            style={{
+              position: 'sticky',
+              top: '0',
+              width: 390,
+              height: '100%',
+              padding: '0px 30px',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+            item>
             <SearchTextField placeholder="Поиск в Твиттере" fullWidth></SearchTextField>
+            <div></div>
           </Grid>
         </Hidden>
       </Grid>
