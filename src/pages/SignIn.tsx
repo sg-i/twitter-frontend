@@ -36,6 +36,7 @@ export const useStylesSignIn = makeStyles((theme) => ({
     width: '50%',
     fontSize: 400,
     minWidth: '100px',
+    fill: '#fff',
   },
   loginSide: {
     display: 'flex',
@@ -104,7 +105,7 @@ export function SignIn() {
     <div>
       <div className={classes.wrapper}>
         <section className={classes.blueSide}>
-          <TwitterIcon color="secondary" className={classes.blueSideTwitterIcon} />
+          <TwitterIcon className={classes.blueSideTwitterIcon} />
         </section>
         <section className={classes.loginSide}>
           <div className={classes.loginSideContainer}>

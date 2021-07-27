@@ -40,12 +40,12 @@ export const theme = createTheme({
             secondary: '##536471',
            
         },
-        action:{
-            active: "#536471",
-            hover: '#rgb(29,161,242)',
-            focus: '#912020',
+        // action:{
+        //     active: "#536471",
+        //     hover: '#rgb(29,161,242)',
+        //     focus: '#912020',
             
-        },
+        // },
         
         
     },

@@ -4,6 +4,7 @@ import {
   Avatar,
   createStyles,
   Grid,
+  Hidden,
   IconButton,
   InputBase,
   List,
@@ -11,6 +12,7 @@ import {
   makeStyles,
   Paper,
   Typography,
+  useMediaQuery,
   withStyles,
 } from '@material-ui/core';
 
@@ -21,22 +23,27 @@ import { SideBar } from '../components/SideBar';
 
 export const useHomeStyles = makeStyles((theme) => ({
   sideMenu: {
+    display: 'flex',
     flexDirection: 'column',
     margin: '0',
     padding: 0,
     listStyleType: 'none',
-    '& div': {
-      display: 'inline-flex',
-      alignItems: 'center',
-      paddingRight: '45px',
-      paddingLeft: 15,
-      borderRadius: '30px',
-      '&:hover': {
-        color: theme.palette.primary.main,
-        backgroundColor: 'rgba(29,161,242,0.1)',
-        '& svg path': {
-          fill: theme.palette.primary.main,
-        },
+    // paddingLeft: '125px',
+    // paddingRight: '21px',
+  },
+  sideMenuContainer: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    // paddingRight: '30px',
+    paddingLeft: 63,
+    borderRadius: '30px',
+    width: 'max-content',
+    marginRight: 20,
+    '&:hover': {
+      color: theme.palette.primary.main,
+      backgroundColor: 'rgba(29,161,242,0.1)',
+      '& svg path': {
+        fill: theme.palette.primary.main,
       },
     },
   },
@@ -52,10 +59,12 @@ export const useHomeStyles = makeStyles((theme) => ({
     fontWeight: 700,
     fontSize: 20,
     marginLeft: '3px',
+    paddingRight: 10,
   },
   sideMenuListItemIcon: {
     fontSize: 32,
     marginRight: 15,
+    marginLeft: -49,
   },
   tweetsWrapper: {
     height: '100%',
@@ -92,6 +101,24 @@ export const useHomeStyles = makeStyles((theme) => ({
     width: 440,
     marginLeft: '-12px',
   },
+  sideMenuTweetContainer: {
+    display: 'block',
+    width: '90%',
+    padding: '0 0',
+    margin: 0,
+    marginTop: 10,
+  },
+  sideMenuTweetButton: {
+    width: '90%',
+    height: 50,
+    padding: '0 0',
+    margin: 0,
+    boxShadow: 'none',
+    '&:hover': {
+      backgroundColor: 'rgb(26, 145, 218)',
+      boxShadow: 'none',
+    },
+  },
 }));
 
 const SearchTextField = withStyles(() =>
@@ -108,10 +135,12 @@ const SearchTextField = withStyles(() =>
 )(InputBase);
 export function Home() {
   const classes = useHomeStyles();
+  const matches = useMediaQuery('(min-width:600px)');
+  console.log(matches);
   return (
     <section>
       <Grid container justifyContent="center" direction="row" style={{ flexWrap: 'nowrap' }}>
-        <Grid style={{ width: 270, height: '100%' }} item>
+        <Grid style={{ paddingLeft: 20, maxWidth: 270, height: '100%' }} item>
           <SideBar classes={classes}></SideBar>
         </Grid>
         <Grid style={{ width: 600, height: '100%' }} item>
@@ -150,9 +179,11 @@ export function Home() {
               classes={classes}></Tweet>
           </Paper>
         </Grid>
-        <Grid style={{ width: 390, height: '100%', padding: '0px 30px' }} item>
-          <SearchTextField placeholder="Поиск в Твиттере" fullWidth></SearchTextField>
-        </Grid>
+        <Hidden smDown>
+          <Grid style={{ width: 390, height: '100%', padding: '0px 30px' }} item>
+            <SearchTextField placeholder="Поиск в Твиттере" fullWidth></SearchTextField>
+          </Grid>
+        </Hidden>
       </Grid>
     </section>
   );

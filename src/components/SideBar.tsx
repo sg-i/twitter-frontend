@@ -8,23 +8,24 @@ import BookmarkIcon from '@material-ui/icons/BookmarkBorderOutlined';
 import FeaturedIcon from '@material-ui/icons/FeaturedPlayListOutlined';
 import PersonIcon from '@material-ui/icons/PersonOutlineOutlined';
 import MoreIcon from '@material-ui/icons/MoreHorizOutlined';
+import SideAddTweetIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 import { useHomeStyles } from '../pages/Home';
-import { Hidden, IconButton, Typography } from '@material-ui/core';
+import { Button, Hidden, IconButton, Typography } from '@material-ui/core';
 interface SideBarProps {
   classes: ReturnType<typeof useHomeStyles>;
 }
 export const SideBar: React.FC<SideBarProps> = ({ classes }: SideBarProps): React.ReactElement => {
   return (
     <ul className={classes.sideMenu}>
-      <li className={classes.sideMenuListItem} style={{ marginLeft: -12 }}>
-        <IconButton color="primary">
+      <li className={classes.sideMenuListItem}>
+        <IconButton style={{ width: 60 }} color="primary">
           <TwitterIcon
             className={classes.sideMenuListItemIcon}
-            style={{ marginLeft: 15 }}></TwitterIcon>
+            style={{ marginLeft: 17 }}></TwitterIcon>
         </IconButton>
       </li>
 
-      <div>
+      <div className={classes.sideMenuContainer}>
         <li className={classes.sideMenuListItem}>
           <HomeIcon className={classes.sideMenuListItemIcon} color="secondary"></HomeIcon>
           <Hidden mdDown>
@@ -34,7 +35,7 @@ export const SideBar: React.FC<SideBarProps> = ({ classes }: SideBarProps): Reac
           </Hidden>
         </li>
       </div>
-      <div>
+      <div className={classes.sideMenuContainer}>
         <li className={classes.sideMenuListItem}>
           <SearchIcon className={classes.sideMenuListItemIcon} color="secondary"></SearchIcon>
 
@@ -45,7 +46,7 @@ export const SideBar: React.FC<SideBarProps> = ({ classes }: SideBarProps): Reac
           </Hidden>
         </li>
       </div>
-      <div>
+      <div className={classes.sideMenuContainer}>
         <li className={classes.sideMenuListItem}>
           <NotificationsIcon
             className={classes.sideMenuListItemIcon}
@@ -57,7 +58,7 @@ export const SideBar: React.FC<SideBarProps> = ({ classes }: SideBarProps): Reac
           </Hidden>
         </li>
       </div>
-      <div>
+      <div className={classes.sideMenuContainer}>
         <li className={classes.sideMenuListItem}>
           <MailIcon className={classes.sideMenuListItemIcon} color="secondary"></MailIcon>
           <Hidden mdDown>
@@ -67,7 +68,7 @@ export const SideBar: React.FC<SideBarProps> = ({ classes }: SideBarProps): Reac
           </Hidden>
         </li>
       </div>
-      <div>
+      <div className={classes.sideMenuContainer}>
         <li className={classes.sideMenuListItem}>
           <BookmarkIcon className={classes.sideMenuListItemIcon} color="secondary"></BookmarkIcon>
           <Hidden mdDown>
@@ -77,7 +78,7 @@ export const SideBar: React.FC<SideBarProps> = ({ classes }: SideBarProps): Reac
           </Hidden>
         </li>
       </div>
-      <div>
+      <div className={classes.sideMenuContainer}>
         <li className={classes.sideMenuListItem}>
           <FeaturedIcon className={classes.sideMenuListItemIcon} color="secondary"></FeaturedIcon>
           <Hidden mdDown>
@@ -87,7 +88,7 @@ export const SideBar: React.FC<SideBarProps> = ({ classes }: SideBarProps): Reac
           </Hidden>
         </li>
       </div>
-      <div>
+      <div className={classes.sideMenuContainer}>
         <li className={classes.sideMenuListItem}>
           <PersonIcon className={classes.sideMenuListItemIcon} color="secondary"></PersonIcon>
           <Hidden mdDown>
@@ -97,7 +98,7 @@ export const SideBar: React.FC<SideBarProps> = ({ classes }: SideBarProps): Reac
           </Hidden>
         </li>
       </div>
-      <div>
+      <div className={classes.sideMenuContainer}>
         <li className={classes.sideMenuListItem}>
           <MoreIcon className={classes.sideMenuListItemIcon} color="secondary"></MoreIcon>
           <Hidden mdDown>
@@ -107,6 +108,18 @@ export const SideBar: React.FC<SideBarProps> = ({ classes }: SideBarProps): Reac
           </Hidden>
         </li>
       </div>
+      <div className={classes.sideMenuTweetContainer}>
+        <li>
+          {' '}
+          <Button className={classes.sideMenuTweetButton} variant="contained" color="primary">
+            <Hidden mdDown>Твитнуть</Hidden>
+            <Hidden lgUp>
+              <SideAddTweetIcon />
+            </Hidden>
+          </Button>
+        </li>
+      </div>
+
       <div>
         <li className={classes.sideMenuListItem}></li>
       </div>
