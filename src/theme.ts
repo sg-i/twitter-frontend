@@ -67,7 +67,8 @@ export const theme = createTheme({
            paper:{
                minWidth: '600px',
            },
-       }
+       },
+      
         
       
       

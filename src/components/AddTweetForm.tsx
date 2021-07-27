@@ -7,6 +7,7 @@ import {
   Button,
   Box,
   Typography,
+  Divider,
 } from '@material-ui/core';
 import CircularProgress, { CircularProgressProps } from '@material-ui/core/CircularProgress';
 import React from 'react';
@@ -29,7 +30,9 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
     }
   };
   const handleClickAddTweet = (): void => {
-    setText('');
+    if (text.length > 0) {
+      setText('');
+    }
   };
   return (
     <Paper className={cN(classes.tweetsHeader, classes.addTweetPaper)} variant="outlined" square>
@@ -39,7 +42,7 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
           <Avatar
             className={classes.tweetUserAvatar}
             alt={`Аватарка пользователя `}
-            src=""></Avatar>
+            src="https://pbs.twimg.com/profile_images/1405512979701977093/9QxAxP4b_400x400.jpg"></Avatar>
         </Grid>
         <Grid item xs>
           <TextareaAutosize
@@ -47,6 +50,7 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
             value={text}
             className={classes.addTweetTextArea}
             placeholder="Что происходит?"></TextareaAutosize>
+          <Divider light variant="fullWidth" />
 
           <div className={classes.AddTweetFormOption}>
             <div className={classes.AddTweetFormMenu}>
@@ -88,7 +92,7 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
             )}
             <Button
               onClick={handleClickAddTweet}
-              disabled={text.length > MAX_TWEET_LENTH || text.length === 0}
+              //   disabled={text.length > MAX_TWEET_LENTH || text.length === 0}
               className={classes.AddTweetFormButton}
               variant="contained"
               color="primary">

@@ -3,6 +3,7 @@ import cN from 'classnames';
 import {
   Avatar,
   createStyles,
+  Divider,
   Grid,
   Hidden,
   IconButton,
@@ -21,6 +22,7 @@ import { grey } from '@material-ui/core/colors';
 import { Tweet } from '../components/Tweet';
 import { SideBar } from '../components/SideBar';
 import { AddTweetForm } from '../components/AddTweetForm';
+import { NewsOnTweetItem } from '../components/NewsOnTweetItem';
 
 export const useHomeStyles = makeStyles((theme) => ({
   sideMenu: {
@@ -133,7 +135,6 @@ export const useHomeStyles = makeStyles((theme) => ({
     border: 'none',
     resize: 'none',
     paddingBottom: 30,
-    borderBottom: '1px solid rgba(0,0,0,0.1)',
   },
   AddTweetFormOption: {
     display: 'flex',
@@ -157,6 +158,20 @@ export const useHomeStyles = makeStyles((theme) => ({
       backgroundColor: 'rgb(26, 145, 218)',
       boxShadow: 'none',
     },
+  },
+  newsOnTweet: {
+    marginTop: 17,
+    backgroundColor: '#f7f9f9',
+    borderRadius: 20,
+  },
+  NewsOnTweetItemWrapper: {
+    padding: 5,
+    display: 'flex',
+  },
+  NewsOnTweetItemMainSide: {},
+  NewsOnTweetItemUser: {
+    display: 'flex',
+    alignItems: 'center',
   },
 }));
 
@@ -286,7 +301,92 @@ export function Home() {
             }}
             item>
             <SearchTextField placeholder="Поиск в Твиттере" fullWidth></SearchTextField>
-            <div></div>
+            <div className={classes.newsOnTweet}>
+              <List style={{ padding: 0 }}>
+                <ListItem>
+                  <Typography style={{ fontFamily: 'Segoe UI', fontWeight: 900 }} variant="h6">
+                    Что нового?
+                  </Typography>
+                </ListItem>
+                <Divider light variant="fullWidth" component="li" />
+
+                <ListItem button>
+                  <NewsOnTweetItem
+                    tweet={{
+                      username: 'The Times',
+                      avatarUrl:
+                        'https://pbs.twimg.com/profile_images/1273572997614440450/ULkR08Er_400x400.png',
+                      textOfTweet: 'Is the anti-Olympic mood turning in Japan?',
+                      addedImageUrl:
+                        'https://pbs.twimg.com/media/E7Oz9CJX0AUVhUo?format=jpg&name=900x900',
+                    }}
+                    classes={classes}
+                  />
+                </ListItem>
+                <Divider light variant="fullWidth" component="li" />
+                <ListItem button>
+                  <NewsOnTweetItem
+                    tweet={{
+                      username: 'anny',
+                      avatarUrl:
+                        'https://pbs.twimg.com/profile_images/1226619642543624192/4BwE4CaZ_400x400.jpg',
+                      textOfTweet: 'it also turned the pretty orange lights into piss yellow',
+                    }}
+                    classes={classes}
+                  />
+                </ListItem>
+                <Divider light variant="fullWidth" component="li" />
+                <ListItem button>
+                  <NewsOnTweetItem
+                    tweet={{
+                      username: 'The Times',
+                      avatarUrl:
+                        'https://pbs.twimg.com/profile_images/1273572997614440450/ULkR08Er_400x400.png',
+                      textOfTweet: 'Is the anti-Olympic mood turning in Japan?',
+                      addedImageUrl:
+                        'https://pbs.twimg.com/media/E7Oz9CJX0AUVhUo?format=jpg&name=900x900',
+                    }}
+                    classes={classes}
+                  />
+                </ListItem>
+                <Divider light variant="fullWidth" component="li" />
+                <ListItem button>
+                  <NewsOnTweetItem
+                    tweet={{
+                      username: 'The Times',
+                      avatarUrl:
+                        'https://pbs.twimg.com/profile_images/1273572997614440450/ULkR08Er_400x400.png',
+                      textOfTweet: 'Is the anti-Olympic mood turning in Japan?',
+                      addedImageUrl:
+                        'https://pbs.twimg.com/media/E7Oz9CJX0AUVhUo?format=jpg&name=900x900',
+                    }}
+                    classes={classes}
+                  />
+                </ListItem>
+                <Divider light variant="fullWidth" component="li" />
+                <ListItem button>
+                  <NewsOnTweetItem
+                    tweet={{
+                      username: 'anny',
+                      avatarUrl:
+                        'https://pbs.twimg.com/profile_images/1226619642543624192/4BwE4CaZ_400x400.jpg',
+                      textOfTweet: 'it also turned the pretty orange lights into piss yellow',
+                    }}
+                    classes={classes}
+                  />
+                </ListItem>
+                <Divider light variant="fullWidth" component="li" />
+                <ListItem
+                  style={{
+                    borderBottomRightRadius: 20,
+                    borderBottomLeftRadius: 20,
+                    height: '100%',
+                  }}
+                  button>
+                  <span style={{ margin: 5, color: '#1DA1F2' }}>Показать еще</span>
+                </ListItem>
+              </List>
+            </div>
           </Grid>
         </Hidden>
       </Grid>
