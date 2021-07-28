@@ -7,6 +7,7 @@ import {
   Grid,
   Hidden,
   IconButton,
+  InputAdornment,
   InputBase,
   List,
   ListItem,
@@ -16,13 +17,15 @@ import {
   useMediaQuery,
   withStyles,
 } from '@material-ui/core';
-
-import { theme } from '../theme';
+import SearchIcon from '@material-ui/icons/SearchOutlined';
 import { grey } from '@material-ui/core/colors';
 import { Tweet } from '../components/Tweet';
 import { SideBar } from '../components/SideBar';
 import { AddTweetForm } from '../components/AddTweetForm';
-import { NewsOnTweetItem } from '../components/NewsOnTweetItem';
+import { NewsOnTweetItem } from '../components/NewsOnTweet/NewsOnTweetItem';
+import { NewsOnTweetBlock } from '../components/NewsOnTweet/NewsOnTweetBlock';
+import { WhoToReadBlock } from '../components/WhoToRead/WhoToReadBlock';
+import { SearchTextField } from '../components/SearchTextField';
 
 export const useHomeStyles = makeStyles((theme) => ({
   sideMenu: {
@@ -173,20 +176,22 @@ export const useHomeStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
   },
+  twitterNewsAndPeoples: {
+    top: 0,
+    width: 390,
+    position: 'sticky',
+
+    padding: '0px 30px',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  modalAddTweet: {
+    borderRadius: 50,
+    margin: '0 auto',
+    height: '100',
+  },
 }));
 
-const SearchTextField = withStyles(() =>
-  createStyles({
-    input: {
-      borderRadius: 30,
-      backgroundColor: '#E6ECF0',
-      height: 45,
-      padding: 0,
-      margin: 0,
-      paddingLeft: 20,
-    },
-  }),
-)(InputBase);
 export function Home() {
   const classes = useHomeStyles();
 
@@ -289,104 +294,30 @@ export function Home() {
           </Paper>
         </Grid>
         <Hidden smDown>
-          <Grid
-            style={{
-              position: 'sticky',
-              top: '0',
-              width: 390,
-              height: '100%',
-              padding: '0px 30px',
-              display: 'flex',
-              flexDirection: 'column',
-            }}
-            item>
-            <SearchTextField placeholder="Поиск в Твиттере" fullWidth></SearchTextField>
-            <div className={classes.newsOnTweet}>
-              <List style={{ padding: 0 }}>
-                <ListItem>
-                  <Typography style={{ fontFamily: 'Segoe UI', fontWeight: 900 }} variant="h6">
-                    Что нового?
-                  </Typography>
-                </ListItem>
-                <Divider light variant="fullWidth" component="li" />
-
-                <ListItem button>
-                  <NewsOnTweetItem
-                    tweet={{
-                      username: 'The Times',
-                      avatarUrl:
-                        'https://pbs.twimg.com/profile_images/1273572997614440450/ULkR08Er_400x400.png',
-                      textOfTweet: 'Is the anti-Olympic mood turning in Japan?',
-                      addedImageUrl:
-                        'https://pbs.twimg.com/media/E7Oz9CJX0AUVhUo?format=jpg&name=900x900',
-                    }}
-                    classes={classes}
-                  />
-                </ListItem>
-                <Divider light variant="fullWidth" component="li" />
-                <ListItem button>
-                  <NewsOnTweetItem
-                    tweet={{
-                      username: 'anny',
-                      avatarUrl:
-                        'https://pbs.twimg.com/profile_images/1226619642543624192/4BwE4CaZ_400x400.jpg',
-                      textOfTweet: 'it also turned the pretty orange lights into piss yellow',
-                    }}
-                    classes={classes}
-                  />
-                </ListItem>
-                <Divider light variant="fullWidth" component="li" />
-                <ListItem button>
-                  <NewsOnTweetItem
-                    tweet={{
-                      username: 'The Times',
-                      avatarUrl:
-                        'https://pbs.twimg.com/profile_images/1273572997614440450/ULkR08Er_400x400.png',
-                      textOfTweet: 'Is the anti-Olympic mood turning in Japan?',
-                      addedImageUrl:
-                        'https://pbs.twimg.com/media/E7Oz9CJX0AUVhUo?format=jpg&name=900x900',
-                    }}
-                    classes={classes}
-                  />
-                </ListItem>
-                <Divider light variant="fullWidth" component="li" />
-                <ListItem button>
-                  <NewsOnTweetItem
-                    tweet={{
-                      username: 'The Times',
-                      avatarUrl:
-                        'https://pbs.twimg.com/profile_images/1273572997614440450/ULkR08Er_400x400.png',
-                      textOfTweet: 'Is the anti-Olympic mood turning in Japan?',
-                      addedImageUrl:
-                        'https://pbs.twimg.com/media/E7Oz9CJX0AUVhUo?format=jpg&name=900x900',
-                    }}
-                    classes={classes}
-                  />
-                </ListItem>
-                <Divider light variant="fullWidth" component="li" />
-                <ListItem button>
-                  <NewsOnTweetItem
-                    tweet={{
-                      username: 'anny',
-                      avatarUrl:
-                        'https://pbs.twimg.com/profile_images/1226619642543624192/4BwE4CaZ_400x400.jpg',
-                      textOfTweet: 'it also turned the pretty orange lights into piss yellow',
-                    }}
-                    classes={classes}
-                  />
-                </ListItem>
-                <Divider light variant="fullWidth" component="li" />
-                <ListItem
-                  style={{
-                    borderBottomRightRadius: 20,
-                    borderBottomLeftRadius: 20,
-                    height: '100%',
-                  }}
-                  button>
-                  <span style={{ margin: 5, color: '#1DA1F2' }}>Показать еще</span>
-                </ListItem>
-              </List>
+          <Grid className={classes.twitterNewsAndPeoples} item>
+            <div
+              style={{
+                backgroundColor: '#fff',
+                position: 'sticky',
+                top: 0,
+                zIndex: 2,
+                padding: ' 5px 0',
+              }}>
+              <SearchTextField
+                variant="outlined"
+                placeholder="Поиск в Твиттере"
+                fullWidth
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon />
+                    </InputAdornment>
+                  ),
+                }}></SearchTextField>
             </div>
+
+            <NewsOnTweetBlock classes={classes} />
+            <WhoToReadBlock classes={classes} />
           </Grid>
         </Hidden>
       </Grid>

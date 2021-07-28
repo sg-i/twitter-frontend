@@ -9,12 +9,42 @@ import FeaturedIcon from '@material-ui/icons/FeaturedPlayListOutlined';
 import PersonIcon from '@material-ui/icons/PersonOutlineOutlined';
 import MoreIcon from '@material-ui/icons/MoreHorizOutlined';
 import SideAddTweetIcon from '@material-ui/icons/AddCircleOutlineOutlined';
+import ClearIcon from '@material-ui/icons/Clear';
 import { useHomeStyles } from '../pages/Home';
-import { Button, Hidden, IconButton, Typography } from '@material-ui/core';
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Divider,
+  Hidden,
+  IconButton,
+  Theme,
+  Typography,
+  withStyles,
+} from '@material-ui/core';
+import { ModalBlock } from './ModalBlock';
+import { AddTweetForm } from './AddTweetForm';
 interface SideBarProps {
   classes: ReturnType<typeof useHomeStyles>;
 }
+
+const DialogAddTweet = withStyles((theme: Theme) => ({
+  root: {
+    '& .MuiDialog-paper': {
+      borderRadius: 20,
+    },
+  },
+}))(Dialog);
+
 export const SideBar: React.FC<SideBarProps> = ({ classes }: SideBarProps): React.ReactElement => {
+  const [visibleModalBlock, setVisibleModalBlock] = React.useState(false);
+  const handleOpenModalBlock = (): void => {
+    setVisibleModalBlock(true);
+  };
+  const handleCloseModalBlock = (): void => {
+    setVisibleModalBlock(false);
+  };
   return (
     <ul className={classes.sideMenu}>
       <li className={classes.sideMenuListItem}>
@@ -111,12 +141,28 @@ export const SideBar: React.FC<SideBarProps> = ({ classes }: SideBarProps): Reac
       <div className={classes.sideMenuTweetContainer}>
         <li>
           {' '}
-          <Button className={classes.sideMenuTweetButton} variant="contained" color="primary">
+          <Button
+            onClick={handleOpenModalBlock}
+            className={classes.sideMenuTweetButton}
+            variant="contained"
+            color="primary">
             <Hidden mdDown>Твитнуть</Hidden>
             <Hidden lgUp>
               <SideAddTweetIcon />
             </Hidden>
           </Button>
+          <div className={classes.modalAddTweet}>
+            <DialogAddTweet onClose={handleCloseModalBlock} open={visibleModalBlock}>
+              <DialogTitle style={{ padding: 7 }}>
+                <IconButton onClick={handleCloseModalBlock} size="medium" color="primary">
+                  <ClearIcon />
+                </IconButton>
+              </DialogTitle>
+              <Divider />
+
+              <AddTweetForm minRows={3} classes={classes} />
+            </DialogAddTweet>
+          </div>
         </li>
       </div>
 

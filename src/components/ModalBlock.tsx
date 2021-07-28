@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
 interface ModalBlockProps {
   title?: string;
   children?: React.ReactNode;
-  onClose: () => void;
+  onClose?: () => void;
 }
 export const ModalBlock: React.FC<ModalBlockProps> = ({
   title = '',

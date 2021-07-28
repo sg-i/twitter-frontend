@@ -17,10 +17,12 @@ import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
 interface AddTweetFormProps {
   classes: ReturnType<typeof useHomeStyles>;
+  minRows?: number;
 }
 const MAX_TWEET_LENTH = 280;
 export const AddTweetForm: React.FC<AddTweetFormProps> = ({
   classes,
+  minRows,
 }: AddTweetFormProps): React.ReactElement => {
   const [text, setText] = React.useState<string>('');
 
@@ -46,6 +48,7 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
         </Grid>
         <Grid item xs>
           <TextareaAutosize
+            minRows={minRows}
             onChange={handleChangeTextArea}
             value={text}
             className={classes.addTweetTextArea}

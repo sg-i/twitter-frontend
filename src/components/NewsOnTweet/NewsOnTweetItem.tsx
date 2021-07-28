@@ -2,7 +2,7 @@ import { Avatar } from '@material-ui/core';
 import { spawn } from 'child_process';
 import classNames from 'classnames';
 import React from 'react';
-import { useHomeStyles } from '../pages/Home';
+import { useHomeStyles } from '../../pages/Home';
 
 interface NewsOnTweetItemProps {
   classes: ReturnType<typeof useHomeStyles>;
