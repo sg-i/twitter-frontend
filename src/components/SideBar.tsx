@@ -33,6 +33,11 @@ const DialogAddTweet = withStyles((theme: Theme) => ({
   root: {
     '& .MuiDialog-paper': {
       borderRadius: 20,
+      marginBottom: 500,
+      boxShadow: 'none',
+    },
+    '& .MuiBackdrop-root': {
+      backgroundColor: 'rgba(0,0,0,0.4)',
     },
   },
 }))(Dialog);

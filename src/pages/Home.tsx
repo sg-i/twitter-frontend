@@ -26,6 +26,10 @@ import { NewsOnTweetItem } from '../components/NewsOnTweet/NewsOnTweetItem';
 import { NewsOnTweetBlock } from '../components/NewsOnTweet/NewsOnTweetBlock';
 import { WhoToReadBlock } from '../components/WhoToRead/WhoToReadBlock';
 import { SearchTextField } from '../components/SearchTextField';
+import { fetchTweets } from '../store/ducks/tweets/actionCreators';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../store/store';
+import { selectTweetsItems } from '../store/ducks/tweets/selectors';
 
 export const useHomeStyles = makeStyles((theme) => ({
   sideMenu: {
@@ -193,8 +197,13 @@ export const useHomeStyles = makeStyles((theme) => ({
 }));
 
 export function Home() {
-  const classes = useHomeStyles();
+  const dispatch = useDispatch();
 
+  const classes = useHomeStyles();
+  const tweets = useSelector(selectTweetsItems);
+  React.useEffect(() => {
+    dispatch(fetchTweets());
+  }, [dispatch]);
   return (
     <section>
       <Grid container justifyContent="center" direction="row" style={{ flexWrap: 'nowrap' }}>
@@ -218,6 +227,18 @@ export function Home() {
             <AddTweetForm classes={classes}></AddTweetForm>
 
             <div style={{ backgroundColor: '#f7f9f9', minHeight: 13 }}></div>
+
+            {tweets.map((tweet) => (
+              <Tweet
+                key={tweet._id}
+                user={{
+                  fullname: tweet.user.fullname,
+                  username: tweet.user.username,
+                  avatarUrl: tweet.user.avatarUrl,
+                }}
+                text={tweet.text}
+                classes={classes}></Tweet>
+            ))}
 
             <Tweet
               user={{
