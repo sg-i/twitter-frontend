@@ -12,17 +12,20 @@ import {
 import CircularProgress, { CircularProgressProps } from '@material-ui/core/CircularProgress';
 import React from 'react';
 import cN from 'classnames';
-import { useHomeStyles } from '../pages/Home';
+import { useHomeStyles } from '../pages/Home/theme';
+
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
 interface AddTweetFormProps {
   classes: ReturnType<typeof useHomeStyles>;
   minRows?: number;
+  title: string;
 }
 const MAX_TWEET_LENTH = 280;
 export const AddTweetForm: React.FC<AddTweetFormProps> = ({
   classes,
   minRows,
+  title,
 }: AddTweetFormProps): React.ReactElement => {
   const [text, setText] = React.useState<string>('');
 
@@ -52,7 +55,7 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
             onChange={handleChangeTextArea}
             value={text}
             className={classes.addTweetTextArea}
-            placeholder="Что происходит?"></TextareaAutosize>
+            placeholder={title}></TextareaAutosize>
           <Divider light variant="fullWidth" />
 
           <div className={classes.AddTweetFormOption}>
@@ -95,7 +98,6 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
             )}
             <Button
               onClick={handleClickAddTweet}
-              //   disabled={text.length > MAX_TWEET_LENTH || text.length === 0}
               className={classes.AddTweetFormButton}
               variant="contained"
               color="primary">

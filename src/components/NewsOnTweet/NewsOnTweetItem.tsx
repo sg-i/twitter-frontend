@@ -2,7 +2,7 @@ import { Avatar } from '@material-ui/core';
 import { spawn } from 'child_process';
 import classNames from 'classnames';
 import React from 'react';
-import { useHomeStyles } from '../../pages/Home';
+import { useHomeStyles } from '../../pages/Home/theme';
 
 interface NewsOnTweetItemProps {
   classes: ReturnType<typeof useHomeStyles>;
@@ -52,8 +52,3 @@ export const NewsOnTweetItem: React.FC<NewsOnTweetItemProps> = ({
     </div>
   );
 };
-/*
-Is the anti-Olympic mood turning in Japan?
-The Times(username) · 1 час назад
-https://pbs.twimg.com/media/E7Oz9CJX0AUVhUo?format=jpg&name=900x900
-*/

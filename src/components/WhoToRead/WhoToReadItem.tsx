@@ -2,7 +2,9 @@ import { Avatar, Button, Grid, IconButton, Typography } from '@material-ui/core'
 import { spawn } from 'child_process';
 import classNames from 'classnames';
 import React from 'react';
-import { useHomeStyles } from '../../pages/Home';
+import { useHomeStyles } from '../../pages/Home/theme';
+
+
 import cN from 'classnames';
 
 interface WhoToReadItemProps {

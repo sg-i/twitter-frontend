@@ -10,7 +10,7 @@ import PersonIcon from '@material-ui/icons/PersonOutlineOutlined';
 import MoreIcon from '@material-ui/icons/MoreHorizOutlined';
 import SideAddTweetIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 import ClearIcon from '@material-ui/icons/Clear';
-import { useHomeStyles } from '../pages/Home';
+import { useHomeStyles } from '../pages/Home/theme';
 import {
   Button,
   Dialog,
@@ -25,6 +25,7 @@ import {
 } from '@material-ui/core';
 import { ModalBlock } from './ModalBlock';
 import { AddTweetForm } from './AddTweetForm';
+import { Link } from 'react-router-dom';
 interface SideBarProps {
   classes: ReturnType<typeof useHomeStyles>;
 }
@@ -52,23 +53,27 @@ export const SideBar: React.FC<SideBarProps> = ({ classes }: SideBarProps): Reac
   };
   return (
     <ul className={classes.sideMenu}>
-      <li className={classes.sideMenuListItem}>
-        <IconButton style={{ width: 60 }} color="primary">
-          <TwitterIcon
-            className={classes.sideMenuListItemIcon}
-            style={{ marginLeft: 17 }}></TwitterIcon>
-        </IconButton>
+      <li className={classes.sideMenuListItem} style={{ cursor: 'default' }}>
+        <Link to="/home">
+          <IconButton style={{ width: 60 }} color="primary">
+            <TwitterIcon
+              className={classes.sideMenuListItemIcon}
+              style={{ marginLeft: 17 }}></TwitterIcon>
+          </IconButton>{' '}
+        </Link>
       </li>
 
       <div className={classes.sideMenuContainer}>
-        <li className={classes.sideMenuListItem}>
-          <HomeIcon className={classes.sideMenuListItemIcon} color="secondary"></HomeIcon>
-          <Hidden mdDown>
-            <Typography className={classes.sideMenuListItemLabel} variant="h6">
-              Главная
-            </Typography>
-          </Hidden>
-        </li>
+        <Link to="/home">
+          <li className={classes.sideMenuListItem}>
+            <HomeIcon className={classes.sideMenuListItemIcon} color="secondary"></HomeIcon>
+            <Hidden mdDown>
+              <Typography className={classes.sideMenuListItemLabel} variant="h6">
+                Главная
+              </Typography>
+            </Hidden>
+          </li>
+        </Link>
       </div>
       <div className={classes.sideMenuContainer}>
         <li className={classes.sideMenuListItem}>
@@ -165,7 +170,7 @@ export const SideBar: React.FC<SideBarProps> = ({ classes }: SideBarProps): Reac
               </DialogTitle>
               <Divider />
 
-              <AddTweetForm minRows={3} classes={classes} />
+              <AddTweetForm title="Что происходит?" minRows={3} classes={classes} />
             </DialogAddTweet>
           </div>
         </li>
