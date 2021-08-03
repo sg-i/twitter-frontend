@@ -92,7 +92,7 @@ export const TweetData: React.FC = (): React.ReactElement | null => {
                 fontWeight: 400,
                 lineHeight: '20px',
               }}>
-              12:40 PM · 2 авг. 2021 г.·Twitter for iPhone
+              12:40 PM · 2 авг. 2021 г. · Twitter for iPhone
             </Typography>
             <Divider style={{ backgroundColor: 'rgb(239, 243, 244)' }} variant="fullWidth" />
 
